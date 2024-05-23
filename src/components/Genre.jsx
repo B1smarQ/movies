@@ -7,7 +7,7 @@ function Genre() {
 
 
     useEffect(() => {
-        fetchGenre();  // Fetching Genres on Initial Render.
+        fetchGenre();  
     }, [])
 
 
