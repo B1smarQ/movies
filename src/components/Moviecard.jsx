@@ -21,18 +21,7 @@ function Moviecard({ movie }) {
         }
     }, [movie.id]);
 
-    const BookmarkMovie = () => {
-        if (!user) {
-            toast.info("To bookmark this movie, please log in.");
-        } else {
-            setIsBookmarked(!isBookmarked)
-            if (isBookmarked) {
-                localStorage.removeItem(movie.id);
-            } else {
-                localStorage.setItem(movie.id, JSON.stringify(movie));
-            }
-        }
-    }
+  
 
     return (
         <motion.div
@@ -40,18 +29,18 @@ function Moviecard({ movie }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 1 }}
             layout
-            className="card relative w-full md:w-60 h-[410px] md:h-[360px] my-3 mx-4 md:my-5 md:mx-0 cursor-pointer rounded-xl overflow-hidden">
+            className="card relative w-full md:w-60 h-[410px] md:h-[360px] my-3 mx-4 md:my-5 md:mx-0  rounded-xl overflow-hidden">
             
-            <button className="absolute bg-black text-white p-2 z-20 right-0 m-3 rounded-full text-xl" onClick={BookmarkMovie}> {isBookmarked ? <AiFillStar /> : <AiOutlineStar/>}</button>
+            <button className="absolute  text-white  z-20  m-3 rounded-full text-xl" > { <AiOutlineStar/>}</button>
 
             
             <div className='absolute bottom-0 w-full flex justify-between items-end p-3 z-20'>
-                <h1 className='text-white text-xl font-semibold  break-normal break-words'>{movie.title || movie.name}</h1>
+                <h1 className='text-white  font-semibold  break-normal break-words'>{movie.title || movie.name}</h1>
 
                 {(movie.vote_average||0) > 7 ? <h1 className='font-bold text-green-500 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1> : (movie.vote_average||0) > 5.5 ? <h1 className='font-bold text-orange-400 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1> : <h1 className='font-bold text-red-600 p-2 bg-zinc-900 rounded-full'>{(movie.vote_average||0).toFixed(1)}</h1>}
             </div>
 
-            <Link to={`/moviedetail/${movie.id}`} className='h-full w-full shadow absolute z-10'></Link>
+            <Link to={`/moviedetail/${movie.id}`} className='h-full w-full  absolute z-10'></Link>
 
             <div>
                 {movie.poster_path === null ? <img className='img object-cover' src={noimage} /> :
